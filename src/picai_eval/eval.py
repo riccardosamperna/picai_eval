@@ -18,6 +18,7 @@ import json
 import os
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
+from sys import prefix
 from typing import (Callable, Dict, Hashable, Iterable, List, Optional, Sized,
                     Tuple, Union)
 
@@ -352,6 +353,7 @@ def evaluate_case(
 def evaluate(
     y_det: "Iterable[Union[npt.NDArray[np.float64], str, Path]]",
     y_true: "Iterable[Union[npt.NDArray[np.float64], str, Path]]",
+    predefined_gt: bool = False,
     sample_weight: "Optional[Iterable[float]]" = None,
     subject_list: Optional[Iterable[Hashable]] = None,
     min_overlap: float = 0.10,
@@ -423,6 +425,7 @@ def evaluate(
                 evaluate_case,
                 y_det=y_det_case,
                 y_true=y_true_case,
+                predefined_gt=predefined_gt,
                 min_overlap=min_overlap,
                 overlap_func=overlap_func,
                 case_confidence_func=case_confidence_func,
