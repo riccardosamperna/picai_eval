@@ -36,12 +36,12 @@ def parse_detection_map(
     blobs_index, num_blobs = ndimage.label(y_det, structure=label_structure)
 
     # input verification
-    if num_blobs < len(set(np.unique(y_det))-{0}):
-        raise ValueError(
-            "It looks like the provided detection map is a softmax volume. If this is indeed the case, convert "
-            "the softmax volumes to detection maps. Check the documentation how to incorporate this: "
-            "https://github.com/DIAGNijmegen/picai_eval/."
-        )
+    # if num_blobs < len(set(np.unique(y_det))-{0}):
+    #     raise ValueError(
+    #         "It looks like the provided detection map is a softmax volume. If this is indeed the case, convert "
+    #         "the softmax volumes to detection maps. Check the documentation how to incorporate this: "
+    #         "https://github.com/DIAGNijmegen/picai_eval/."
+    #     )
 
     # extract confidence per lesion candidate
     confidences = {}
